@@ -13,37 +13,44 @@ public class QuickSort {
     
     private int[] elementsArray; //searchable array
     
+    public QuickSort setElementArray(int[] elementsArray){
+        this.elementsArray = elementsArray;
+        return this;
+    }
     
+    public int[] getElementArray(){
+        return this.elementsArray;
+    }
     
-    public void sortArray(int[]elementsArray, int minIndex,int maxIndex)
+    public void sortArray(int minIndex,int maxIndex)
     {
         
         
         if(minIndex < maxIndex)
         {
-            int pivotIndex = this.partition(elementsArray, minIndex, maxIndex);
-            sortArray(elementsArray, minIndex, pivotIndex-1);
-            sortArray(elementsArray, pivotIndex+1, maxIndex);
+            int pivotIndex = this.partition(minIndex, maxIndex);
+            sortArray(minIndex, pivotIndex-1);
+            sortArray(pivotIndex+1, maxIndex);
         }
         
         
     }
     
-    private int partition(int[]elementsArray,int minIndex, int maxIndex)
+    private int partition(int minIndex, int maxIndex)
     {
-        int pivot = elementsArray[maxIndex];
+        int pivot = this.elementsArray[maxIndex];
         int i=minIndex-1;
         for (int j = minIndex; j < maxIndex; j++) {
-           if (elementsArray[j] <= pivot) {
+           if (this.elementsArray[j] <= pivot) {
                i++;
-               int swapTemp = elementsArray[i];
-               elementsArray[i] = elementsArray[j];
-               elementsArray[j] = swapTemp;
+               int swapTemp = this.elementsArray[i];
+               this.elementsArray[i] = this.elementsArray[j];
+               this.elementsArray[j] = swapTemp;
            }
        }
-       int swapTemp = elementsArray[i+1];
-        elementsArray[i+1] = elementsArray[maxIndex];
-        elementsArray[maxIndex] = swapTemp;
+       int swapTemp = this.elementsArray[i+1];
+        this.elementsArray[i+1] = this.elementsArray[maxIndex];
+        this.elementsArray[maxIndex] = swapTemp;
 
         return i+1;
         

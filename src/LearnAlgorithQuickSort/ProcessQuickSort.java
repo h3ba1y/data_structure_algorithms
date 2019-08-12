@@ -20,7 +20,7 @@ public class ProcessQuickSort {
         int maxIndex = elementsArray.length - 1;
         int minIndex = 0;
         
-        quickSort.sortArray(elementsArray,minIndex,maxIndex);
+        quickSort.setElementArray(elementsArray).sortArray(minIndex,maxIndex);
         
         System.out.println("sorted Array elements ");
         for(int i =0 ;i<elementsArray.length;i++)
