@@ -9,7 +9,7 @@ package LearnDataStructureLinkedList;
  *
  * @author hebatarek
  */
-public class SinglyLinkedList {
+public class CircularSinglyLinkedList {
     
     Node head = null;
     
@@ -24,7 +24,7 @@ public class SinglyLinkedList {
         }
     }
     
-    public static SinglyLinkedList insertLastNode(SinglyLinkedList linkedList, int data)
+    public static CircularSinglyLinkedList insertLastNode(CircularSinglyLinkedList linkedList, int data)
     {
         Node newNode = new Node(data);
         
@@ -32,64 +32,50 @@ public class SinglyLinkedList {
         {
             System.out.println("this is the first node, data="+data);
             linkedList.head = newNode;
+            newNode.next= linkedList.head;
             
         }else{
             System.out.println("Add new node in the last, data="+data);
             Node node = linkedList.head;
-            while(node.next !=null)
+            while(node.next !=linkedList.head)
             {
                 node = node.next;
             }
             
             node.next = newNode;
+            newNode.next = linkedList.head;
         }
         
         return linkedList;
     }
     
-    public static SinglyLinkedList insertFirstNode(SinglyLinkedList linkedList, int data)
+    public static CircularSinglyLinkedList insertFirstNode(CircularSinglyLinkedList linkedList, int data)
     {
         Node newNode = new Node(data);
         
         if(linkedList.head == null)
         {
             System.out.println("this is the first node, data="+data);
-            linkedList.head = newNode;
+            newNode.next= linkedList.head;
             
         }else{
             System.out.println("Add new node in th first, data="+data);
             Node node = linkedList.head;
+            while(node.next!=linkedList.head){
+                node=node.next;
+            }
+            newNode.next=node.next;
+            node.next = newNode;
             linkedList.head = newNode;
-            linkedList.head.next = node;
+            
+            
         }
         
         return linkedList;
     }
     
-     public static SinglyLinkedList insertAfterNode(SinglyLinkedList linkedList, Node node, int data)
-    {
-        Node newNode = new Node(data);
-        
-        if(linkedList.head == null)
-        {
-            System.out.println("Linked list is empty");
-        }else{
-            System.out.println("Insert new node after specific node, data="+data);
-            Node temp = linkedList.head;
-           
-            while(temp != node && temp.next!=null)
-            {
-                temp = temp.next;
-            }
-            Node tempNext = temp.next;
-            temp.next = newNode;
-            newNode.next = tempNext;
-        }
-        
-        return linkedList;
-    }
      
-     public static SinglyLinkedList DeleteLastNode(SinglyLinkedList linkedList)
+     public static CircularSinglyLinkedList DeleteLastNode(CircularSinglyLinkedList linkedList)
     {
       
         if(linkedList.head == null)
@@ -101,19 +87,19 @@ public class SinglyLinkedList {
             Node node = linkedList.head;
             while(node !=null)
             {   
-                if(node.next.next==null){
+                if(node.next.next==linkedList.head){
                     break;
                 }
                 node = node.next;
             }
             
-            node.next = null;
+            node.next = linkedList.head;
         }
         
         return linkedList;
     }
     
-    public static SinglyLinkedList DeleteFirstNode(SinglyLinkedList linkedList)
+    public static CircularSinglyLinkedList DeleteFirstNode(CircularSinglyLinkedList linkedList)
     {
         
         if(linkedList.head == null)
@@ -122,33 +108,21 @@ public class SinglyLinkedList {
             
         }else{
             System.out.println("Delete first node");
-            Node tempNode = linkedList.head.next;
-            linkedList.head = tempNode;
+            Node node = linkedList.head;
+            while(node.next!=linkedList.head){
+                node=node.next;
+            }
+            node.next = linkedList.head.next;
+            linkedList.head = linkedList.head.next;
+            
         }
         
         return linkedList;
     }
     
-     public static SinglyLinkedList DeleteAfterNode(SinglyLinkedList linkedList, Node node)
-    {
-        if(linkedList.head == null)
-        {
-            System.out.println("Linked list is empty");
-        }else{
-            System.out.println("Delete after specific node");
-            Node temp = linkedList.head;
-           
-            while(temp != node && temp.next!=null)
-            {
-                temp = temp.next;
-            }
-            temp.next = temp.next.next;
-        }
-        
-        return linkedList;
-    }
+
      
-    public static SinglyLinkedList SearchForNode(SinglyLinkedList linkedList, int requiredData)
+    public static CircularSinglyLinkedList SearchForNode(CircularSinglyLinkedList linkedList, int requiredData)
     {
         if(linkedList.head == null)
         {
@@ -177,7 +151,7 @@ public class SinglyLinkedList {
     }
     
     
-    public static void print(SinglyLinkedList linkedList)
+    public static void print(CircularSinglyLinkedList linkedList)
     {
         Node node = linkedList.head;
         if(node == null)
@@ -189,7 +163,7 @@ public class SinglyLinkedList {
             System.out.println("Node #"+i+" data is :"+node.data);
             node = node.next;
             i++;
-        }while(node.next !=null);
+        }while(node.next !=linkedList.head);
         
         System.out.println("Node #"+i+" data is :"+node.data);
     }
