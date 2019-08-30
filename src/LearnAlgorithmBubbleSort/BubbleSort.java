@@ -29,19 +29,18 @@ public class BubbleSort {
         
         int length = (this.elementsArray).length;
         
-        for(int i=0;i<length-1;i++)
+        for(int i=0;i<length;i++)
         {
-            for (int j=0;j<length-i-1;j++){
-                
-                if(this.elementsArray[j] >  this.elementsArray[j+1]){
+            for (int j=i+1;j<length;j++){
+                if(this.elementsArray[i] >  this.elementsArray[j]){
                     swapElement = this.elementsArray[j];
-                    this.elementsArray[j] = this.elementsArray[j+1];
-                    this.elementsArray[j+1] = swapElement;
+                    this.elementsArray[j] = this.elementsArray[i];
+                    this.elementsArray[i] = swapElement;
                 }
             }
             
         }
-        
+
     }
     
 }
